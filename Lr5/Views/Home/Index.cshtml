@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Lr5.Models.Book>
+@{
+    //ViewData["Title"] = "Список книг";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Книжный магазин</title>
+</head>
+<body>
+    <h3>Books</h3>
+    <table style="border: 3px solid black;">
+        <tr>
+            <td>id</td>
+            <td>Tittle</td>
+            <td>Desctiption</td>
+            <td>Date on</td>
+            <td>Author Name</td>
+            <td></td>
+        </tr>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td style="border: 1px solid black;">@book.BookId</td>
+                <td style="border: 1px solid black;">@book.Title</td>
+                <td style="border: 1px solid black;">@book.Description</td>
+                <td style="border: 1px solid black;">@book.PublishedOn</td>
+                <td style="border: 1px solid black;">@book.Author.Name</td>
+                <td><a href="~/Home/change/@book.BookId"><button>Изменить</button></a></td>
+                <td><button>delete</button></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@model Lr5.Models.Book
+@{
+    //ViewData["Title"] = "Список книг";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form asp-action="change" asp-controller="home" asp-route-id="@Model.BookId" method="post" target="_blank">
+        
+            <h2>Данные для редактирования</h2>
+            <fieldset>
+            <legend>Book №@Model.BookId</legend>
+                <ul>
+                    <li>
+                        <label for="name">Tittle: </label>
+                    <input type="text" name="Title" placeholder="@Model.Title" id="name" required>
+                    </li>
+                    <br>
+                    <li>
+                        <label for="age">Published On: </label>
+                    <input type="date" name="PublishedOn" placeholder="@Model.PublishedOn" id="PublishedOn" min="0" max="125">
+                    <label>текущая дата - @Model.PublishedOn</label>
+                    </li>
+                    <br>
+                    <li>
+                        <label for="message">Description: </label>
+                        <br>
+                        <textarea name="Description" placeholder="@Model.Description" id="message"></textarea>
+                    </li>
+                    <li>
+                        <label for="Author">Author: </label>
+                        <br>
+                    <input type="text" name="Author" placeholder="@Model.Author.Name" id="Author" disabled>
+                    </li>
+                </ul>
+            </fieldset>
+        
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+</html>
