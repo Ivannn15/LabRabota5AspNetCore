@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Lr5.Models.Book>
+@{
+    //ViewData["Title"] = "Добавление книг";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="post" target="_blank">
+
+        <h2>Введите данные для добавления</h2>
+        <fieldset>
+            <legend>New book</legend>
+            <ul>
+                <li>
+                    <label for="name">Tittle: </label>
+                    <input type="text" name="Title" id="name" required>
+                </li>
+                <br>
+                <li>
+                    <label for="age">Published On: </label>
+                    <input type="date" name="PublishedOn" id="PublishedOn" min="0" max="125">
+                </li>
+                <br>
+                <li>
+                    <label for="message">Description: </label>
+                    <br>
+                    <textarea name="Description" id="message"></textarea>
+                </li>
+                <li>
+                    <table>
+                        <label for="Author">Author: </label>
+                        @foreach (var author in Model)
+                        {
+                            <tr>
+                                <td style="border: 1px solid black;">@author.Author.AuthorId</td>
+                                <td style="border: 1px solid black;">@author.Author.Name</td>
+                                <td style="border: 1px solid black;">@author.Author.WebUrl</td>
+                                <td><input name="Author" id="@author.AuthorId" value="@author" type="radio" ></td>
+                            </tr>
+
+                        }
+                    </table>
+                    
+                </li>
+            </ul>
+        </fieldset>
+
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

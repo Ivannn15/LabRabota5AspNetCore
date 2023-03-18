@@ -13,7 +13,9 @@ using System.Threading.Tasks;
 using MySqlConnector;
 
 namespace Lr5
-{
+{/// <summary>
+/// Добавить функции добавления и удаления элементов в таблице
+/// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)

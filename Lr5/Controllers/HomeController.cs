@@ -21,6 +21,13 @@ namespace Lr5.Controllers
         }
 
         [HttpGet]
+        public IActionResult addBook()
+        {
+            var modelBooks = db.Books.Include(p => p.Author);
+            return View(modelBooks);
+        }
+
+        [HttpGet]
         public IActionResult change(int? id)
         {
             if (id == null) return RedirectToAction("Index");
