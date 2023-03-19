@@ -33,18 +33,31 @@ namespace Lr5.Controllers
         //    return NotFound();
         //}
 
+        //[HttpPost]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var item = db.Books.FindAsync(id);
+        //    if (item == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    db.Books.Remove(item.Result);
+        //    db.SaveChangesAsync();
+
+        //    return RedirectToAction("Index");
+        //}
+
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var item = db.Books.FindAsync(id);
-            if (item != null)
+            var item = db.Books.Find(id);
+            if (item == null)
             {
                 return NotFound();
             }
-            db.Books.Remove(item.Result);
-            db.SaveChangesAsync();
-
-            return RedirectToAction("Index");
+            db.Books.Remove(item);
+            db.SaveChanges();
+            return Redirect("Index");
         }
 
 
