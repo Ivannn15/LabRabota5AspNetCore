@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Lr5.Models.Book>
+﻿@model IEnumerable<Lr5.Models.Author>
 @{
     //ViewData["Title"] = "Добавление книг";
     Layout = null;
@@ -13,7 +13,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="#" method="post" target="_blank">
+    <form asp-action="addBook" asp-controller="home" method="post" target="_blank">
 
         <h2>Введите данные для добавления</h2>
         <fieldset>
@@ -40,12 +40,11 @@
                         @foreach (var author in Model)
                         {
                             <tr>
-                                <td style="border: 1px solid black;">@author.Author.AuthorId</td>
-                                <td style="border: 1px solid black;">@author.Author.Name</td>
-                                <td style="border: 1px solid black;">@author.Author.WebUrl</td>
-                                <td><input name="Author" id="@author.AuthorId" value="@author" type="radio" ></td>
+                                <td style="border: 1px solid black;">@author.AuthorId</td>
+                                <td style="border: 1px solid black;">@author.Name</td>
+                                <td style="border: 1px solid black;">@author.WebUrl</td>
+                                <td><input name="AuthorId" id="AuthorId" value="@author.AuthorId" type="radio"></td>
                             </tr>
-
                         }
                     </table>
                     

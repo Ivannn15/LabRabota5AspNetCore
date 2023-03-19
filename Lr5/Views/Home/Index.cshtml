@@ -11,6 +11,7 @@
 </head>
 <body>
     <h3>Books</h3>
+    <form asp-action="Delete @Model." asp-controller="HomeController" method="post">
     <table style="border: 3px solid black;">
         <tr>
             <td>id</td>
@@ -29,11 +30,12 @@
                 <td style="border: 1px solid black;">@book.PublishedOn</td>
                 <td style="border: 1px solid black;">@book.Author.Name</td>
                 <td><a href="~/Home/change/@book.BookId"><button>Изменить</button></a></td>
-                <td><button>delete</button></td>
-            </tr>
+                <td><button inp type="submit" >Удалить</button></td>
+            </tr>// Разобраться с кнопкой удаления 
             
         }
         <a href="~/Home/addBook/"><button>Добавить книгу</button></a>
     </table>
+    </form>
 </body>
 </html>

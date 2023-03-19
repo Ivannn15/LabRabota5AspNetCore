@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lr5.Models
 {
     public class Book
     {
+        [Key]
         public int BookId { get; set; } // Первичный ключ для таблицы Books
 
         public string Title { get; set; } // Поля таблицы
