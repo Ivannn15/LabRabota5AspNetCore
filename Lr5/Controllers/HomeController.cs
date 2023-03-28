@@ -48,6 +48,87 @@ namespace Lr5.Controllers
         //}
 
         [HttpPost]
+        public IActionResult addAuthor(Author author)
+        {
+            int Max = db.Authors.Max(p => p.AuthorId);
+            author.AuthorId = Max+1;
+            db.Authors.Add(author);
+            db.SaveChanges();
+            return Redirect("Index");
+        }
+
+        [HttpGet]
+        public IActionResult addAuthor()
+        {
+            return View(db.Authors);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteAuthor(int id)
+        {
+            var item = db.Authors.Find(id);
+            db.Authors.Remove(item);
+            db.SaveChanges();
+            return Redirect("addBook");
+        }
+
+        //[HttpGet]
+        //public IActionResult IndexSortedId() // разобраться с сортировкой
+        //{
+        //    var modelBooks = db.Books.Include(p => p.Author).OrderBy(p => p.Title);
+
+        //    return View(modelBooks);
+        //}
+
+        public IActionResult IndexSorted(string sortOrder)
+        {
+            ViewData["idSortParam"] = sortOrder == "id" ? "id_desc" : "id";
+            ViewData["DateSortParam"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["TitleSortParam"] = sortOrder == "Title" ? "title_desc" : "Title";
+            ViewData["DescriptionSortParam"] = sortOrder == "Description" ? "description_desc" : "Description";
+            ViewData["AuthorSortParam"] = sortOrder == "Author" ? "author_desc" : "Author";
+            var books = from b in db.Books.Include(p => p.Author)
+                select b;
+            switch (sortOrder)
+            {
+                case "id":
+                    books = books.OrderByDescending(b => b.BookId);
+                    break;
+                case "id_desc":
+                    books = books.OrderBy(b => b.BookId);
+                    break;
+                case "Title":
+                    books = books.OrderBy(b => b.Title);
+                    break;
+                case "Title_desc":
+                    books = books.OrderByDescending(b => b.Title);
+                    break;
+                case "Date":
+                    books = books.OrderBy(b => b.PublishedOn);
+                    break;
+                case "date_desc":
+                    books = books.OrderByDescending(b => b.PublishedOn);
+                    break;
+                case "Description":
+                    books = books.OrderBy(b => b.PublishedOn);
+                    break;
+                case "description_desc":
+                    books = books.OrderByDescending(b => b.PublishedOn);
+                    break;
+                case "Author":
+                    books = books.OrderBy(b => b.Author.Name);
+                    break;
+                case "author_desc":
+                    books = books.OrderByDescending(b => b.Author);
+                    break;
+                default:
+                    break;
+            }
+            return View("Index", books);
+        }
+
+
+        [HttpPost]
         public IActionResult Delete(int id)
         {
             var item = db.Books.Find(id);
@@ -86,13 +167,49 @@ namespace Lr5.Controllers
             if (id == null) return RedirectToAction("Index");
             ViewBag.BookID = id;
             var modelBooks = db.Books.Include(p => p.Author).Where(p => p.BookId == id).Single();
-            return View(modelBooks);
+            var modelAuthors = db.Authors;
+            var viewModel = new MyViewModel
+            {
+                Authors = db.Authors,
+                Book = modelBooks
+            };
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult changeAuthor(int? id)
+        {
+            Author tempAuthor = db.Authors.Single(p => p.AuthorId == id);
+            return View(tempAuthor);
         }
 
         [HttpPost]
-        public IActionResult change(int id, Book book)
+        public IActionResult changeAuthor(int id,Author author)
+        {
+            var originalData = db.Authors.Find(id);
+
+            if (originalData == null)
+            {
+                return NotFound();
+            }
+
+            originalData.Name = author.Name;
+            originalData.WebUrl = author.WebUrl;
+
+            db.SaveChanges();
+            return RedirectToAction("addBook");
+        }
+
+
+        [HttpPost]
+        public IActionResult change([FromForm] int AuthorId, int id, Book book)
         {
             var originalData = db.Books.Find(id);
+
+            if (AuthorId != null)
+            {
+                originalData.Author = db.Authors.SingleOrDefault(p => p.AuthorId == AuthorId);
+            }
 
             if (originalData == null)
             {

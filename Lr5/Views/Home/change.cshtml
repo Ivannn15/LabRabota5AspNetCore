@@ -1,4 +1,4 @@
-﻿@model Lr5.Models.Book
+﻿@model MyViewModel
 @{
     //ViewData["Title"] = "Список книг";
     Layout = null;
@@ -12,32 +12,45 @@
     <title>Document</title>
 </head>
 <body>
-    <form asp-action="change" asp-controller="home" asp-route-id="@Model.BookId" method="post" target="_blank">
+    <form asp-action="change" asp-controller="home" asp-route-id="@Model.Book.BookId" method="post" target="_self">
         
-            <h2>Введите данные для редактирования</h2>
+        <h2>Введите данные для редактирования</h2>
+        <a asp-action="Index">Menu</a>
             <fieldset>
-            <legend>Book №@Model.BookId</legend>
+            <legend>Book №@Model.Book.BookId</legend>
                 <ul>
                     <li>
                         <label for="name">Tittle: </label>
-                    <input type="text" name="Title" placeholder="@Model.Title" id="name" required>
+                    <input type="text" value="@Model.Book.Title" name="Title" id="name" required>
                     </li>
                     <br>
                     <li>
                         <label for="age">Published On: </label>
-                    <input type="date" name="PublishedOn" placeholder="@Model.PublishedOn" id="PublishedOn" min="0" max="125">
-                    <label>текущая дата - @Model.PublishedOn</label>
+                        <input type="date" asp-for="@Model.Book.PublishedOn" name="PublishedOn" id="PublishedOn" min="0" max="125">
                     </li>
                     <br>
                     <li>
                         <label for="message">Description: </label>
                         <br>
-                        <textarea name="Description" placeholder="@Model.Description" id="message"></textarea>
+                        <textarea name="Description" asp-for="@Model.Book.Description" aria-valuenow="@Model.Book.Description" id="message"></textarea>
                     </li>
                     <li>
                         <label for="Author">Author: </label>
                         <br>
-                    <input type="text" name="Author" placeholder="@Model.Author.Name" id="Author" disabled>
+                        <input type="text" name="Author" value="@Model.Book.Author.Name" id="Author" disabled>
+                    </li>
+                    <li>
+                        @foreach (var author in Model.Authors)
+                        {
+                            <table>
+                                <tr>
+                                    <td style="border: 1px solid black;">@author.AuthorId</td>
+                                    <td style="border: 1px solid black;">@author.Name</td>
+                                    <td><input name="AuthorId" id="AuthorId" value="@author.AuthorId" type="radio"></td>
+                                    @*<td><a asp-route-id="@author.AuthorId" asp-action="change"><button asp-controller="Home" type="button">Изменить</button></a></td>*@
+                                </tr>
+                            </table>
+                        }
                     </li>
                 </ul>
             </fieldset>

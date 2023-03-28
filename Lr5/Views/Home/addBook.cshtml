@@ -13,15 +13,16 @@
     <title>Document</title>
 </head>
 <body>
-    <form asp-action="addBook" asp-controller="home" method="post" target="_blank">
+    <form asp-action="addBook" asp-controller="home" method="post" target="_self">
 
         <h2>Введите данные для добавления</h2>
+        <a asp-action="Index">Menu</a>
         <fieldset>
             <legend>New book</legend>
             <ul>
                 <li>
                     <label for="name">Tittle: </label>
-                    <input type="text" name="Title" id="name" required>
+                    <input type="text" name="Title" id="name" >
                 </li>
                 <br>
                 <li>
@@ -44,6 +45,8 @@
                                 <td style="border: 1px solid black;">@author.Name</td>
                                 <td style="border: 1px solid black;">@author.WebUrl</td>
                                 <td><input name="AuthorId" id="AuthorId" value="@author.AuthorId" type="radio"></td>
+                                <td><a asp-route-id="@author.AuthorId" asp-action="changeAuthor"><button asp-controller="Home" type="button">Изменить</button></a></td>
+                                <td><button asp-action="DeleteAuthor" value="@author.AuthorId" id="id" name="id" type="">Удалить</button></td>
                             </tr>
                         }
                     </table>
@@ -51,7 +54,6 @@
                 </li>
             </ul>
         </fieldset>
-
         <button type="submit">Добавить</button>
     </form>
 </body>

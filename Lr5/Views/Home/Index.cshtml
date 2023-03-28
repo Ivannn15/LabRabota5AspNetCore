@@ -11,14 +11,66 @@
 </head>
 <body>
     <h3>Books</h3>
-    <form  asp-controller="Home" method="post">
+    <form asp-action="IndexSortedId" method="post">
     <table style="border: 3px solid black;">
         <tr>
-            <td>id</td>
-            <td>Tittle</td>
-            <td>Desctiption</td>
-            <td>Date on</td>
-            <td>Author Name</td>
+            <td>
+                <a asp-action="IndexSorted" asp-route-sortOrder="@ViewData["idSortParam"]">
+                    id
+                    @if (ViewData["idSortParam"].ToString() == "id")
+                    {
+                        <span class="oi oi-arrow-bottom">▾</span>
+                    }
+                    else if (ViewData["idSortParam"].ToString() == "id_desc")
+                    {
+                        <span class="oi oi-arrow-top">▴</span>
+                    }
+                </a>
+            </td>
+            <td><a asp-action="IndexSorted" asp-route-sortOrder="@ViewData["TitleSortParam"]">
+                Tittle
+                @if (ViewData["TitleSortParam"].ToString() == "Title")
+                {
+                    <span class="oi oi-arrow-bottom">▾</span>
+                }
+                else if (ViewData["TitleSortParam"].ToString() == "title_desc")
+                {
+                    <span class="oi oi-arrow-top">▴</span>
+                }
+            </a></td>
+            <td><a asp-action="IndexSorted" asp-route-sortOrder="@ViewData["DescriptionSortParam"]">
+                Desctiption
+                @if (ViewData["DescriptionSortParam"].ToString() == "Description")
+                {
+                    <span class="oi oi-arrow-bottom">▾</span>
+                }
+                else if (ViewData["DescriptionSortParam"].ToString() == "description_desc")
+                {
+                    <span class="oi oi-arrow-top">▴</span>
+                }
+            </a></td>
+            <td><a asp-action="IndexSorted" asp-route-sortOrder="@ViewData["DateSortParam"]">
+                Date on
+                @if (ViewData["DateSortParam"].ToString() == "Date")
+                {
+                    <span class="oi oi-arrow-bottom">▾</span>
+                }
+                else if (ViewData["DateSortParam"].ToString() == "date_desc")
+                {
+                    <span class="oi oi-arrow-top">▴</span>
+                }
+            </a></td>
+            <td><a asp-action="IndexSorted" asp-route-sortOrder="@ViewData["AuthorSortParam"]">
+                Author Name
+                @if (ViewData["AuthorSortParam"].ToString() == "Author")
+                {
+                    <span class="oi oi-arrow-bottom">▾</span>
+                }
+                else if (ViewData["AuthorSortParam"].ToString() == "author_desc")
+                {
+                    <span class="oi oi-arrow-top">▴</span>
+                }
+            </a></td>
             <td></td>
         </tr>
         @foreach (var book in Model)
@@ -34,7 +86,8 @@
             </tr>// Разобраться с кнопкой удаления 
             
         }
-            <a asp-action="addBook"><button asp-controller="Home" type="button">Добавить книгу</button></a>
+        <a asp-action="addBook"><button asp-controller="Home" type="button">Добавить книгу | Изменить автора</button></a>
+        <a asp-action="addAuthor"><button asp-controller="Home" type="button">Добавить автора</button></a>
     </table>
     </form>
 </body>

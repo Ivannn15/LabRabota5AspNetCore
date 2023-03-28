@@ -1,0 +1,37 @@
+﻿@model Lr5.Models.Author
+@{
+    //ViewData["Title"] = "Добавление книг";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form asp-action="changeAuthor" asp-controller="home" method="post" target="_self">
+
+    <h2>Введите данные для добавления</h2>
+    <fieldset>
+        <legend>New author</legend>
+        <ul>
+            <li>
+                <label for="name">Name: </label>
+                <input type="text" value="@Model.Name" name="Name" id="name" >
+            </li>
+            <br>
+            <li>
+                <label for="WebUrl">Web url: </label>
+                <input type="text" value="@Model.WebUrl" name="WebUrl" id="WebUrl" min="0" max="125">
+            </li>
+        </ul>
+    </fieldset>
+
+    <button type="submit">Изменить</button>
+</form>
+</body>
+</html>
