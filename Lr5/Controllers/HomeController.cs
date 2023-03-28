@@ -54,7 +54,7 @@ namespace Lr5.Controllers
             author.AuthorId = Max+1;
             db.Authors.Add(author);
             db.SaveChanges();
-            return Redirect("Index");
+            return Redirect("IndexSorted");
         }
 
         [HttpGet]
@@ -138,7 +138,7 @@ namespace Lr5.Controllers
             }
             db.Books.Remove(item);
             db.SaveChanges();
-            return Redirect("Index");
+            return Redirect("IndexSorted");
         }
 
 
@@ -158,13 +158,13 @@ namespace Lr5.Controllers
             book.BookId = maxId + 1;
             db.Books.Add(book);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexSorted");
         }
 
         [HttpGet]
         public IActionResult change(int? id)
         {
-            if (id == null) return RedirectToAction("Index");
+            if (id == null) return RedirectToAction("IndexSorted");
             ViewBag.BookID = id;
             var modelBooks = db.Books.Include(p => p.Author).Where(p => p.BookId == id).Single();
             var modelAuthors = db.Authors;
@@ -222,7 +222,7 @@ namespace Lr5.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexSorted");
         }
 
 
