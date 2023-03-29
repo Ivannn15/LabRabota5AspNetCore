@@ -5,6 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\EasyL\Authorization.cshtml" />
+    <Content Remove="Views\EasyL\Main.cshtml" />
+    <Content Remove="Views\EasyL\News.cshtml" />
+    <Content Remove="Views\EasyL\Register.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\EasyL\Authorization.cshtml" />
+    <None Include="Views\EasyL\Main.cshtml" />
+    <None Include="Views\EasyL\News.cshtml" />
+    <None Include="Views\EasyL\Register.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
   </ItemGroup>

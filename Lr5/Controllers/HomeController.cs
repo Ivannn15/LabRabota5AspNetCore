@@ -22,6 +22,30 @@ namespace Lr5.Controllers
             return View(modelBooks);
         }
 
+        public IActionResult Main()
+        {
+            return View();
+        }
+
+        public IActionResult Authorization()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult AddNewUser(User user)
+        {
+            int MaxId = db.Users.Max(p => p.Id)+1;
+            user.Id = MaxId;
+            db.Users.Add(user);
+            db.SaveChanges();
+            return Redirect("Index");
+        }
+
         //[HttpPost]
         //public IActionResult Delete(int? id)
         //{

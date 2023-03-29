@@ -1,0 +1,61 @@
+.stText {
+    position: absolute;
+    left: 50px;
+    top: 100px;
+}
+
+.stTextm{
+    position: absolute;
+    left: 50px;
+    top: 320px;
+    font-size: 18px;
+}
+
+.info1{
+    margin-top: 50px;
+}
+
+.info1_1{
+    display: flex;
+    margin-top: 150px;
+    justify-content: center;
+}
+
+.info_img{
+    padding-left: 5%;
+    margin-top: 50px;
+}
+
+.info_2{
+    display: flex;
+    margin-top: 150px;
+}
+
+.info_2_1{
+    padding-top: 50px;
+}
+
+.info_2_1 p{
+    padding-top: 50px;
+    font-size: 20px;
+}
+
+.info_3{
+    justify-content: center;
+    display: flex;
+    margin-top: 100px;
+    margin-left: 150px
+}
+
+.info_3 p{
+    font-size: 15px;
+}
+
+.container_goInYourPage{
+    
+    align-items: center;
+    justify-content: center;
+    margin-top: 15%;
+    display:grid;    
+    width: 100%;
+}

@@ -27,6 +27,7 @@ namespace Lr5.Models
         // Список сущностей таблицы книги включающий авторов
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<User> Users { get; set; }
 
         ////// Настройка отображения в базу данных
     }

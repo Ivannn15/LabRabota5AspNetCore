@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/styleForEl.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на курсы программирования</title>
+</head>
+<body style="background: linear-gradient(to right, #F6EFD2, #ffb300);">
+    <nav style="background-color: #e3f2fd; z-index: 1;" class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a style="color: rgb(0, 74, 210);" class="navbar-brand" href="Main.html"><b>Easy Learn</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Main.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="#">Предметы</a>
+                    </li>
+                    <a class="nav-link" href="News.html" aria-current="pageNews">
+                        Новости
+                    </a>
+                </ul>
+                <form class="d-flex w-50" role="search" style="padding-right: 10px;">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a style="padding-right: 5px;" href="Authorization.html"><button type="button" class="btn btn-outline-secondary">Вход</button></a>
+                        <a href="Register.html"><button type="button" class="btn btn-warning">Зарегистрироваться</button></a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div style=" display: flex; align-items: center; position: static; top: 0; left: 0; width: 30%; height: 100%; padding: 0%; margin-top: 5%;" class="container">
+        <form asp-action="AddNewUser" style="align-items: center;justify-content: center; width: 100%;" method="post">
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">🧑‍🎓</span>
+                <input type="text" name="Name" id="Name" class="form-control" placeholder="Ваше имя:" aria-label="Username" aria-describedby="addon-wrapping">
+            </div>
+
+            <div class="form-floating mb-3" style="padding-top: 5px;">
+                <input type="email" name="Email" id="Email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+            </div>
+
+            <div class="form-floating">
+                <p>Дополнительная информация</p>
+                <textarea class="form-control" name="Info" id="Info" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">Пароль</label>
+                </div>
+                <div class="col-auto">
+                    <input type="password" id="Password" name="Password" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+                <div class="col-auto">
+                    <span style="font-size: 10px;" id="passwordHelpInline" class="form-text">
+                        Must be 8-20 characters long.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" >
+                <label class="form-check-label" for="flexCheckDefault">
+                    С правилами ознакомился и согласен
+                </label>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit" method="post">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+</body>
+</html>
