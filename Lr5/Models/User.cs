@@ -1,4 +1,7 @@
-﻿namespace Lr5.Models
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+
+namespace Lr5.Models
 {
     public class User
     {
@@ -7,5 +10,6 @@
         public string Name { get; set; }
         public string Info { get; set; }
         public string Password { get; set; }
+        public bool isAuthorized { get; set; }
     }
 }

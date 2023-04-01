@@ -37,13 +37,51 @@ namespace Lr5.Controllers
             return View();
         }
 
+        public IActionResult News()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult AddNewUser(User user)
         {
+            var email = user.Email;
+            User userTemp = db.Users.SingleOrDefault(p => p.Email == email);
+            if (userTemp != null)
+            {
+                ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
+                return View("Register");
+            }
+            if (user.Name == null || user.Email == null || user.Password == null)
+            {
+                ModelState.AddModelError("Eror null name or email", " Одно из полей 'Имя' 'Email' 'Password' не было заполненно");
+                return View("Register");
+            }
             int MaxId = db.Users.Max(p => p.Id)+1;
             user.Id = MaxId;
             db.Users.Add(user);
             db.SaveChanges();
-            return Redirect("Index");
+            return Redirect("UserPage");
+        }
+
+        public static bool isAuthorized = false;
+
+        [HttpPost]
+        public IActionResult Authorization(User user)
+        {
+
+            User userTemp = db.Users.SingleOrDefault(p => p.Email == user.Email && p.Password == user.Password);
+            if (userTemp == null)
+            {
+                ModelState.AddModelError("Not fount this user", "Вы ввели неверный Email или пароль");
+                return View("Authorization");
+            }
+
+            isAuthorized = true;
+            ViewData["isAuthorized"] = true;
+
+            return View("UserPage", userTemp);
+
         }
 
         //[HttpPost]

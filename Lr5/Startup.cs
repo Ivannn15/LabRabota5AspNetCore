@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MySqlConnector;
+using Lr5.Filters;
 
 namespace Lr5
 {/// <summary>
@@ -34,7 +35,14 @@ namespace Lr5
             services.AddDbContext<AppDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), serverVersion));
 
+            // подключения фильтра для определения авторизации пользователя
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(typeof(SetIsAuthorizedFilter));
+            });
+
         }
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

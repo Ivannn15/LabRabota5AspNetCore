@@ -15,149 +15,127 @@
 </head>
 <body>
 
-    <nav style="background-color: #e3f2fd;" class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a style="color: rgb(0, 74, 210);" class="navbar-brand" href="Main.html"><b>Easy Learn</b></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="Main.html">Главная</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="#">Предметы</a>
-              </li>
-                <a class="nav-link" href="News.html" aria-current="pageNews">
-                  Новости
-                </a>
-            </ul>
-            <form class="d-flex w-50" role="search" style="padding-right: 10px;">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                <a style="padding-right: 5px;" href="@Url.Action("Authorization")"><button type="button" class="btn btn-outline-secondary">Вход</button></a>
-                <a href="@Url.Action("Register")"><button type="button" class="btn btn-warning">Зарегистрироваться</button></a> 
-              </div>
-            </form>
-          </div>
-        </div>
-      </nav>
+    <partial name="Navbar" />
 
-      <div class="startTitle">
+    <div class="startTitle">
         <h1 class="stText">Легко осваивайте <br> сложные предметы с <br> помощью карточек и <br> пробных тестов</h1>
         <p class="stTextm">Присоединяйтесь к 60 миллионам учеников по всему миру, <br> которые используют карточки, пробные тесты и игры <br> Easy Learn, основанные на научных принципах, чтобы <br> достигать своих целей в школе, университете и за их <br> пределами.</p>
-        <img style="width: 100%;" src="image/presentations_16_9_lesson_plan_slide_deck.jpg" class="img-fluid" alt="...">
-      </div>
+        <img style="width: 100%;" src="image/main.jpg" class="img-fluid" alt="...">
+    </div>
 
-      <div class="info1">
+    <div class="info1">
         <h2 align="center">90% учеников, использующих Easy Learn, говорят, что их <br> успеваемость улучшилась</h2>
         <div class="info1_1">
-          <div style="width: 30%;">
-            <h3>Запоминайте что угодно <br> с помощью бесплатных <br> цифровых карточек</h3>
-            <p style="font-size: 20px; padding-top: 20px;">Исследования показывают, что <br> самопроверка с помощью карточек более <br> эффективна, чем перечитывание <br> конспектов. Найдите готовые карточки, <br> созданные вашими сверстниками и <br> учителями, или мгновенно создайте <br> собственные.</p>
-            <button style="margin-top: 15px; height: 60px; width: 120px; font-size: 18px;" type="button" class="btn btn-primary"><b>Начать</b></button>
-          </div>
-          <div class="info_img"><img height="400" src="/image/130dc509-6919-47bc-b27d-17f600a41b0c_IntlFirstSlice.jpg" class="rounded mx-auto d-block" alt="...">
-          </div>
+            <div style="width: 30%;">
+                <h3>Запоминайте что угодно <br> с помощью бесплатных <br> цифровых карточек</h3>
+                <p style="font-size: 20px; padding-top: 20px;">Исследования показывают, что <br> самопроверка с помощью карточек более <br> эффективна, чем перечитывание <br> конспектов. Найдите готовые карточки, <br> созданные вашими сверстниками и <br> учителями, или мгновенно создайте <br> собственные.</p>
+                <button style="margin-top: 15px; height: 60px; width: 120px; font-size: 18px;" type="button" class="btn btn-warning"><b>Начать</b></button>
+            </div>
+            <div style="border-radius: 50px;" class="info_img">
+                <img height="400" src="/image/card.jpg" class="rounded mx-auto d-block" alt="...">
+            </div>
         </div>
-      </div>
+    </div>
 
-      <div style="justify-content: center;" class="info_2">
+    <div style="justify-content: center; background-image: url(image/backimage.png); height: 600px; padding-top: 6%;" class="info_2">
         <div style="width: 40%; padding-right: 5%;">
-          <img width="100%" src="image/bus.jpg" class="rounded mx-auto" alt="...">
+            <img width="100%" src="image/bus.jpg" class="rounded mx-auto" alt="...">
         </div>
-        <div class="info_2_1">
-          <h3>Учитесь даже в автобусе</h3>
-          <p>Оставьте конспекты и бумажные карточки <br> дома и учитесь где угодно, даже офлайн, с <br> помощью наших приложений для iOS и <br> Android. Ваш прогресс синхронизируется <br> на телефоне и компьютере.</p>
-        </div>
-      </div>
-
-      <div class="info_3">
-        <div style="padding-right: 10%;">
-          <div style="background-color: #ffee00fd; width: 75px; text-align: center; border-radius: 5px; ">
-            <p><b>EasyPlus</b></p>
-          </div>
-          <h3 style="font-size: 35px;">
-            Готовьтесь к экзаменам в <br> режимах заучивания и <br> тестирования
-          </h3>
-          <p style="padding-top: 30px; font-size: 20px;">
-            Превратите карточки в настраиваемые тесты. <br> Не просто запоминайте, а тренируйте <br> вспоминание с помощью специальных типов <br> вопросов.
-          </p>
-
-          <div style="display: flex; padding-top: 30px;">
-            <div style="display: flex ;align-items: center; justify-content: center; padding-right: 20px;">
-              <img height="45px" src="image/learn.svg" alt="">
+        <div style="background-color: aliceblue; height: 70%; width: 40%; border-radius: 20px;">
+            <div class="info_2_1" style="padding-left: 10%; ">
+                <h3>Учитесь даже в автобусе</h3>
+                <p>Оставьте конспекты и бумажные карточки <br> дома и учитесь где угодно, даже офлайн, с <br> помощью наших приложений для iOS и <br> Android. Ваш прогресс синхронизируется <br> на телефоне и компьютере.</p>
             </div>
-              <div>
-                <h3 style="font-size: 22px;">
-                  Тренируйтесь в режиме заучивания
-                </h3>
-                <p style="font-size: 17px;">
-                  Основанный на принципах интервального <br> повторения, режим заучивания позволяет <br> тренироваться по вопросам с выбором ответов, <br> "верно-неверно", письменным вопросам и не <br> только.
-                </p>
-              </div>
-          </div>
+        </div>
 
-          <div style="display: flex; padding-top: 30px;">
-            <div style="display: flex ;align-items: center; justify-content: center; padding-right: 20px;">
-              <img height="45px" src="image/Test.svg" alt="">
-            </div>
-              <div>
-                <h3 style="font-size: 22px;">
-                  Тренируйтесь в режиме заучивания
-                </h3>
-                <p style="font-size: 17px;">
-                  Основанный на принципах интервального <br> повторения, режим заучивания позволяет <br> тренироваться по вопросам с выбором ответов, <br> "верно-неверно", письменным вопросам и не <br> только.
-                </p>
-              </div>
-          </div>
+    </div>
 
-          <div style="display: flex; padding-top: 30px;">
-            <div style="display: flex ;align-items: center; justify-content: center; padding-right: 20px;">
-              <img height="45px" src="image/Smart Grading.svg" alt="">
+    <div class="info_3" style="margin-right: 5%;">
+        <div style="padding-right: 5%;">
+            <div style="background-color: #ffee00fd; width: 75px; text-align: center; border-radius: 5px; ">
+                <p><b>EasyPlus</b></p>
             </div>
-              <div>
-                <h3 style="font-size: 22px;">
-                  Тренируйтесь в режиме заучивания
-                </h3>
-                <p style="font-size: 17px;">
-                  Основанный на принципах интервального <br> повторения, режим заучивания позволяет <br> тренироваться по вопросам с выбором ответов, <br> "верно-неверно", письменным вопросам и не <br> только.
-                </p>
-              </div>
-          </div>
+            <h3 style="font-size: 35px;">
+                Готовьтесь к экзаменам в <br> режимах заучивания и <br> тестирования
+            </h3>
+            <p style="padding-top: 30px; font-size: 20px;">
+                Превратите карточки в настраиваемые тесты. <br> Не просто запоминайте, а тренируйте <br> вспоминание с помощью специальных типов <br> вопросов.
+            </p>
+
+            <div style="display: flex; padding-top: 30px;">
+                <div style="display: flex ;align-items: center; justify-content: center; padding-right: 20px;">
+                    <img height="45px" src="image/learn.svg" alt="">
+                </div>
+                <div>
+                    <h3 style="font-size: 22px;">
+                        Тренируйтесь в режиме заучивания
+                    </h3>
+                    <p style="font-size: 17px;">
+                        Основанный на принципах интервального <br> повторения, режим заучивания позволяет <br> тренироваться по вопросам с выбором ответов, <br> "верно-неверно", письменным вопросам и не <br> только.
+                    </p>
+                </div>
+            </div>
+
+            <div style="display: flex; padding-top: 30px;">
+                <div style="display: flex ;align-items: center; justify-content: center; padding-right: 20px;">
+                    <img height="45px" src="image/Test.svg" alt="">
+                </div>
+                <div>
+                    <h3 style="font-size: 22px;">
+                        Тренируйтесь в режиме заучивания
+                    </h3>
+                    <p style="font-size: 17px;">
+                        Основанный на принципах интервального <br> повторения, режим заучивания позволяет <br> тренироваться по вопросам с выбором ответов, <br> "верно-неверно", письменным вопросам и не <br> только.
+                    </p>
+                </div>
+            </div>
+
+            <div style="display: flex; padding-top: 30px;">
+                <div style="display: flex ;align-items: center; justify-content: center; padding-right: 20px;">
+                    <img height="45px" src="image/Smart Grading.svg" alt="">
+                </div>
+                <div>
+                    <h3 style="font-size: 22px;">
+                        Тренируйтесь в режиме заучивания
+                    </h3>
+                    <p style="font-size: 17px;">
+                        Основанный на принципах интервального <br> повторения, режим заучивания позволяет <br> тренироваться по вопросам с выбором ответов, <br> "верно-неверно", письменным вопросам и не <br> только.
+                    </p>
+                </div>
+            </div>
 
         </div>
-        <div style="padding-left: 50px; padding-top: 100px;">
-          <img height="700" src="image/124959.png" alt="">
+        <div style="padding-left: 20px; padding-top: 100px;">
+            <img height="700" src="image/124959.png" alt="">
         </div>
-      </div>
+    </div>
 
-      <footer style="margin-top: 100px;">
+    <footer style="margin-top: 100px;">
 
         <hr>
         <h2 align="center" style="margin-top: 50px;">
-          Любые устройства, любые браузеры  
+            Любые устройства, любые браузеры
         </h2>
 
         <p align="center" style="font-size: 20px; margin-top: 50px;">
-          Наш веб-сайт оптимизирован для любых телефонов или планшетов, поэтому вы сможете <br> использовать функции Easy Learn через браузер на любом устройстве.
+            Наш веб-сайт оптимизирован для любых телефонов или планшетов, поэтому вы сможете <br> использовать функции Easy Learn через браузер на любом устройстве.
         </p>
 
-          <div style="display: flex; padding: 40px; justify-content: center;"> <!--Логотипы соц сетей -->
+        <div style="display: flex; padding: 40px; justify-content: center;">
+            <!--Логотипы соц сетей -->
             <img height="30px" src="image/52-521508_clipart-apples-capital-letter-letter-b-inside-a.png" alt="">
             <img style="padding-left: 5px;" height="30px" src="image/twitter_small.png" alt="">
             <img style="padding-left: 5px;" height="30px" src="image/facebook-icon-ai-png-facebook-circle-2160.png" alt="">
             <img style="padding-left: 5px;" height="30px" src="image/google-plus-png-black-1.png" alt="">
-          </div>
+        </div>
 
-          <p align="right" style="padding-right: 40px;">
+        <p align="right" style="padding-right: 40px;">
             Ivan Inc.
-          </p>
+        </p>
 
-      </footer>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-     crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>
 </body>
 </html>
