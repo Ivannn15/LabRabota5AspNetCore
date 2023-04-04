@@ -28,7 +28,7 @@
             </div>
     }
 
-    <form method="post" style="display:flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 5%;">
+    <form asp-action="AuthorizationUser" asp-controller="home" method="post" style="display:flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 5%;">
         <div class="mb-3 w-25">
             <label for="Email" class="form-label">Email</label>
             <input type="email" class="form-control" name="Email" id="Email" aria-describedby="emailHelp">
@@ -36,13 +36,13 @@
         </div>
         <div class="mb-3 w-25">
             <label for="Password" class="form-label">Пароль</label>
-            <input type="password" id="Password" name="Password" class="form-control" id="exampleInputPassword1">
+            <input type="password" id="Password" name="Password" class="form-control">
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Я тебя запомнил</label>
         </div>
-        <button type="submit" class="btn btn-primary w-25">Войти</button>
+        <button type="submit" asp-action="AuthorizationUser" asp-controller="home" class="btn btn-primary w-25">Войти</button>
     </form>
 </body>
 </html>

@@ -5,6 +5,13 @@ using MySqlConnector;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Lr5.Controllers
 {
@@ -15,6 +22,8 @@ namespace Lr5.Controllers
         {
             db = context;
         }
+
+        // сортирует таблицу с книгами по возрастанию id при загрузке страницы индекс
         public IActionResult Index()
         {
             var modelBooks = db.Books.Include(p => p.Author).OrderBy(p => p.BookId);
@@ -27,6 +36,9 @@ namespace Lr5.Controllers
             return View();
         }
 
+       
+
+        [HttpGet]
         public IActionResult Authorization()
         {
             return View();
@@ -42,8 +54,15 @@ namespace Lr5.Controllers
             return View();
         }
 
+        [Authorize]
+        public IActionResult UserPage(User user)
+        {
+            return View(user);
+        }
+
+        // форма регистрации с проверкой на коректность ввода данных
         [HttpPost]
-        public IActionResult AddNewUser(User user)
+        public async Task<IActionResult> AddNewUserAsync(User user)
         {
             var email = user.Email;
             User userTemp = db.Users.SingleOrDefault(p => p.Email == email);
@@ -61,13 +80,41 @@ namespace Lr5.Controllers
             user.Id = MaxId;
             db.Users.Add(user);
             db.SaveChanges();
-            return Redirect("UserPage");
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Name)
+            };
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            return RedirectToAction("UserPage", "user");
         }
 
         public static bool isAuthorized = false;
 
+        ////////////[HttpPost]
+        ////////////public IActionResult Authorization(User user)
+        ////////////{
+
+        ////////////    User userTemp = db.Users.SingleOrDefault(p => p.Email == user.Email && p.Password == user.Password);
+        ////////////    if (userTemp == null)
+        ////////////    {
+        ////////////        ModelState.AddModelError("Not fount this user", "Вы ввели неверный Email или пароль");
+        ////////////        return View("Authorization");
+        ////////////    }
+        ////////////    ////////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ////////////    isAuthorized = true;
+        ////////////    ViewData["isAuthorized"] = true;
+
+        ////////////    return View("UserPage", userTemp);
+
+        ////////////}
+
+        // форма авторизации с использование куки
         [HttpPost]
-        public IActionResult Authorization(User user)
+        public async Task<IActionResult> AuthorizationUserAsync(User user)
         {
 
             User userTemp = db.Users.SingleOrDefault(p => p.Email == user.Email && p.Password == user.Password);
@@ -76,12 +123,41 @@ namespace Lr5.Controllers
                 ModelState.AddModelError("Not fount this user", "Вы ввели неверный Email или пароль");
                 return View("Authorization");
             }
-
+            ////////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
             isAuthorized = true;
             ViewData["isAuthorized"] = true;
+            userTemp.isAuthorized = true;
 
-            return View("UserPage", userTemp);
+            // создается объекты `Claim`, которые содержат информацию о пользователе, такую как идентификатор и имя.
+            // Затем создается объект `ClaimsIdentity`, который используется для создания объекта `ClaimsPrincipal`
+            // После этого вызывается метод `HttpContext.SignInAsync`, который выполняет аутентификацию пользователя и сохраняет его информацию в cookie.
+            // В качестве параметров методу передаются схема аутентификации, объект `ClaimsPrincipal`
+            // и дополнительные параметры аутентификации, такие как время жизни cookie. 
 
+            //В результате успешной аутентификации пользователь получает доступ к защищенным ресурсам приложения.
+
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, userTemp.Id.ToString()),
+                new Claim(ClaimTypes.Name, userTemp.Name)
+            };
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            return RedirectToAction("UserPage", "user", userTemp);
+
+        }
+
+        // выход
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Main", "home");
         }
 
         //[HttpPost]
@@ -142,6 +218,8 @@ namespace Lr5.Controllers
         //    return View(modelBooks);
         //}
 
+
+        // сортировки таблицы книги в представлении Index
         public IActionResult IndexSorted(string sortOrder)
         {
             ViewData["idSortParam"] = sortOrder == "id" ? "id_desc" : "id";

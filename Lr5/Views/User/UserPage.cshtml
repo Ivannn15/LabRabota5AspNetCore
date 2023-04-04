@@ -1,11 +1,8 @@
-﻿@model Lr5.Models.User
-
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +10,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="styleForEl.css">
+    <link rel="stylesheet" href="~/css/styleForEl.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Запись на курсы программирования</title>
 </head>
 <body style="background: linear-gradient(to right, #F6EFD2, #ffb300);">
 
-    <partial name="Navbar" />
+    <partial name="UserNavbar" />
 
     <div style="display: flex; margin-top: 1%; margin-left: 1%;">
         <img style="border-radius: 90px; height: 9%; width: 9%;" src="https://media.istockphoto.com/vectors/male-face-silhouette-or-icon-man-avatar-profile-unknown-or-anonymous-vector-id1087531642?k=20&m=1087531642&s=612x612&w=0&h=D6OBNUY7ZxQTAHNVtL9mm2wbHb_dP6ogIsCCWCqiYQg=" alt="">
@@ -38,14 +35,38 @@
         </div>
     </div>
 
-    <hr>
+    <br>
+    <div class=" bg-dark  shadow align-content-center align-items-center align-text-top">
+        <h4 class="pb-lg-2" style="color:white; margin-left:2%">My study materials:</h4>
+    </div>
 
-    <div style="margin-left: 1%;" class="userInfo_1">
+    <div class="bg-dark" style="height: 300px;">
         <h3>
             Учебные модули
         </h3>
+
+        <div class="d-flex align-items-center d-flex justify-content-between">
+
+            <div style="margin-left: 10%;" class="text-center image-container">
+                <img src="~/image/movies.jpg" class="rounded" alt="...">
+                <span class="span_1">Watch a movie? 😏📽️</span>
+            </div>
+            <div class="text-center image-container">
+                <img src="~/image/books.jpg" class="rounded" alt="...">
+                <span class="span_2">Let's read 🤓📖</span>
+            </div>
+            <div style="margin-right: 10%;" class="text-center image-container">
+                <img src="~/image/music.jpg" class="rounded" alt="...">
+                <span class="span_3">Go audio 😎🤘</span>
+            </div>
+
+        </div>
     </div>
 
+    </div>
+
+    <div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

@@ -60,3 +60,59 @@
     display: grid;
     width: 100%;
 }
+
+css
+.image-container {
+    position: relative;
+}
+
+.image-container img {
+    transition: transform 0.5s ease;
+    height: 50%;
+    width: 50%;
+}
+
+    .image-container img:hover {
+        transform: scale(1.2);
+        z-index: 1;
+    }
+
+.span_1 {
+    position: absolute;
+    top: 84%;
+    left: 24%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    transition: all 0.3s ease-out;
+}
+
+.span_2 {
+    position: absolute;
+    top: 84%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    transition: all 0.3s ease-out;
+}
+
+.span_3 {
+    position: absolute;
+    top: 84%;
+    left: 77%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    transition: all 0.3s ease-out;
+}
+
+.image-container img:hover + span {
+    opacity: 1;
+}

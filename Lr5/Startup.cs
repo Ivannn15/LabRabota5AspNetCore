@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySqlConnector;
 using Lr5.Filters;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Lr5
 {/// <summary>
@@ -41,6 +42,14 @@ namespace Lr5
                 options.Filters.Add(typeof(SetIsAuthorizedFilter));
             });
 
+                        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+             .AddCookie(options =>
+             {
+                 options.LoginPath = "/home/Index";
+                 options.AccessDeniedPath = "/home/Authorization";
+                 options.ExpireTimeSpan = TimeSpan.FromDays(30);
+             });
+
         }
         
 
@@ -63,6 +72,7 @@ namespace Lr5
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
